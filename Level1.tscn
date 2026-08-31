@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dpcsfbn8rkmuc"]
+
+[ext_resource type="Script" uid="uid://yn3iclxuhp65" path="res://player.gd" id="1_kyxg0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc20k"]
+size = Vector2(20, 19)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cove1"]
+
+[node name="Node2D" type="Node2D" unique_id=1122306409]
+position = Vector2(-1, -1)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1923507314]
+position = Vector2(617, 299)
+script = ExtResource("1_kyxg0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=177477461]
+position = Vector2(1, 0.5)
+scale = Vector2(1, 0.95999956)
+shape = SubResource("RectangleShape2D_mc20k")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player" unique_id=286518343]
+position = Vector2(1, 1)
+scale = Vector2(20.120003, 20.04)
+mesh = SubResource("BoxMesh_cove1")
