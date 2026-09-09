@@ -1,25 +1,44 @@
 [gd_scene format=3 uid="uid://dpcsfbn8rkmuc"]
 
 [ext_resource type="Script" uid="uid://yn3iclxuhp65" path="res://player.gd" id="1_kyxg0"]
+[ext_resource type="Script" uid="uid://dg2nsghqbe0yr" path="res://BallMovement.gd" id="2_mc20k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mc20k"]
 size = Vector2(20, 19)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cove1"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cove1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dwyiq"]
+
 [node name="Node2D" type="Node2D" unique_id=1122306409]
-position = Vector2(-1, -1)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1923507314]
-position = Vector2(617, 299)
+position = Vector2(306, 413)
 script = ExtResource("1_kyxg0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=177477461]
-position = Vector2(1, 0.5)
+position = Vector2(5.9604645e-08, 1.7763568e-15)
 scale = Vector2(1, 0.95999956)
 shape = SubResource("RectangleShape2D_mc20k")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Player" unique_id=286518343]
-position = Vector2(1, 1)
-scale = Vector2(20.120003, 20.04)
+position = Vector2(8.34465e-07, 0)
+scale = Vector2(19.999998, 18)
 mesh = SubResource("BoxMesh_cove1")
+
+[node name="Ball" type="RigidBody2D" parent="." unique_id=1905384918]
+position = Vector2(306, 288)
+script = ExtResource("2_mc20k")
+horizontalSpeed = 300
+verticalSpeed = 150
+dir = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=409718951]
+shape = SubResource("CircleShape2D_cove1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ball" unique_id=796727828]
+position = Vector2(-2.3841858e-07, 2.2737368e-13)
+scale = Vector2(20.022678, 20.000006)
+mesh = SubResource("SphereMesh_dwyiq")
