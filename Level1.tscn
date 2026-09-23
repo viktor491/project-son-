@@ -12,6 +12,11 @@ size = Vector2(20, 19)
 
 [sub_resource type="SphereMesh" id="SphereMesh_dwyiq"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_mc20k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwyiq"]
+size = Vector2(20.32047, 31)
+
 [node name="Node2D" type="Node2D" unique_id=1122306409]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1923507314]
@@ -39,6 +44,68 @@ dir = -1
 shape = SubResource("CircleShape2D_cove1")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Ball" unique_id=796727828]
-position = Vector2(-2.3841858e-07, 2.2737368e-13)
-scale = Vector2(20.022678, 20.000006)
+position = Vector2(9.55026e-07, -2.3841899e-06)
+scale = Vector2(20.022675, 20.000002)
 mesh = SubResource("SphereMesh_dwyiq")
+
+[node name="TopWall" type="RigidBody2D" parent="." unique_id=613917881]
+position = Vector2(573, -3.8146973e-06)
+scale = Vector2(1, 0.9363002)
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="TopWall" unique_id=191188455]
+position = Vector2(10.999999, -17.999998)
+scale = Vector2(1177.12, 30.160017)
+mesh = SubResource("QuadMesh_mc20k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=486785056]
+position = Vector2(7, -18.156574)
+scale = Vector2(58.039993, 1)
+shape = SubResource("RectangleShape2D_dwyiq")
+
+[node name="BottomWall" type="RigidBody2D" parent="." unique_id=813398045]
+position = Vector2(573, 683.99994)
+scale = Vector2(1, 0.9363002)
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="BottomWall" unique_id=798131081]
+position = Vector2(10.999999, -17.999998)
+scale = Vector2(1177.12, 30.160017)
+mesh = SubResource("QuadMesh_mc20k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=49206830]
+position = Vector2(7, -18.156574)
+scale = Vector2(58.039993, 1)
+shape = SubResource("RectangleShape2D_dwyiq")
+
+[node name="RightWall" type="RigidBody2D" parent="." unique_id=1928854154]
+position = Vector2(1156.0001, 320.00003)
+rotation = 1.5707964
+scale = Vector2(0.6348197, 2.3987439)
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="RightWall" unique_id=20618962]
+position = Vector2(10.999999, -17.999998)
+scale = Vector2(1177.12, 30.160017)
+mesh = SubResource("QuadMesh_mc20k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=2145875195]
+position = Vector2(7, -18.156574)
+scale = Vector2(58.039993, 1)
+shape = SubResource("RectangleShape2D_dwyiq")
+
+[node name="LeftWall" type="RigidBody2D" parent="." unique_id=815095061]
+position = Vector2(-80, 319)
+rotation = 1.5707964
+scale = Vector2(0.6348197, 2.3987439)
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="LeftWall" unique_id=1756321494]
+position = Vector2(10.999999, -17.999998)
+scale = Vector2(1177.12, 30.160017)
+mesh = SubResource("QuadMesh_mc20k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1228069318]
+position = Vector2(7, -18.156574)
+scale = Vector2(58.039993, 1)
+shape = SubResource("RectangleShape2D_dwyiq")
