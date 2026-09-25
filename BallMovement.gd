@@ -3,6 +3,8 @@ extends RigidBody2D
 @export var horizontalSpeed = 0;
 @export var verticalSpeed = 0;
 @export var dir = 1;
+@export var loseScreen = Node;
+@export var player = Node; 
 var initialHorizontalSpeed = 0;
 var initialVerticalSpeed = 0;
 var firstCollision = false;
@@ -28,6 +30,13 @@ func _process(delta):
 		var colliderName = collision.get_collider().name
 		print(colliderName)
 		
+		if (colliderName.contains("Obstacle")):
+			collision.get_collider().queue_free()
+			dir = -1
+			horizontalSpeed = randi_range(-initialHorizontalSpeed,initialHorizontalSpeed)
+			verticalSpeed = randi_range(initialVerticalSpeed / 1.3, verticalSpeed * 2)
+			
+		
 		if (colliderName == "Player"):
 			dir = 1
 			horizontalSpeed = abs(horizontalSpeed) * playerDir
@@ -36,12 +45,12 @@ func _process(delta):
 			dir = -1
 			horizontalSpeed = randi_range(-initialHorizontalSpeed,initialHorizontalSpeed)
 			verticalSpeed = randi_range(initialVerticalSpeed / 1.3, verticalSpeed * 2)
-			print("TOPWALL")	
+				
 		
-		if (colliderName == "BottomWall"):
-			dir = 1
-			horizontalSpeed = randi_range(-initialHorizontalSpeed,initialHorizontalSpeed)
-			verticalSpeed = randi_range(initialVerticalSpeed / 1.3, initialVerticalSpeed * 2)		
+		if (colliderName == "LoseHitbox"):
+			loseScreen.show()
+			self.queue_free()
+			player.changePlayerState()
 		
 		if (colliderName == "LeftWall"):
 			dir = -1

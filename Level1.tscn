@@ -15,12 +15,19 @@ size = Vector2(20, 19)
 [sub_resource type="QuadMesh" id="QuadMesh_mc20k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwyiq"]
-size = Vector2(20.32047, 31)
+size = Vector2(20.241507, 30.277328)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cove1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dn5ey"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_dwyiq"]
 
 [node name="Node2D" type="Node2D" unique_id=1122306409]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1923507314]
 position = Vector2(306, 413)
+scale = Vector2(10.643376, -0.43608117)
 script = ExtResource("1_kyxg0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=177477461]
@@ -33,12 +40,14 @@ position = Vector2(8.34465e-07, 0)
 scale = Vector2(19.999998, 18)
 mesh = SubResource("BoxMesh_cove1")
 
-[node name="Ball" type="RigidBody2D" parent="." unique_id=1905384918]
+[node name="Ball" type="RigidBody2D" parent="." unique_id=1905384918 node_paths=PackedStringArray("loseScreen", "player")]
 position = Vector2(306, 288)
 script = ExtResource("2_mc20k")
 horizontalSpeed = 300
 verticalSpeed = 150
 dir = -1
+loseScreen = NodePath("../Lose-Screen")
+player = NodePath("../Player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=409718951]
 shape = SubResource("CircleShape2D_cove1")
@@ -63,17 +72,17 @@ position = Vector2(7, -18.156574)
 scale = Vector2(58.039993, 1)
 shape = SubResource("RectangleShape2D_dwyiq")
 
-[node name="BottomWall" type="RigidBody2D" parent="." unique_id=813398045]
+[node name="LoseHitbox" type="RigidBody2D" parent="." unique_id=813398045]
 position = Vector2(573, 683.99994)
 scale = Vector2(1, 0.9363002)
 gravity_scale = 0.0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="BottomWall" unique_id=798131081]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="LoseHitbox" unique_id=798131081]
 position = Vector2(10.999999, -17.999998)
 scale = Vector2(1177.12, 30.160017)
 mesh = SubResource("QuadMesh_mc20k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=49206830]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseHitbox" unique_id=49206830]
 position = Vector2(7, -18.156574)
 scale = Vector2(58.039993, 1)
 shape = SubResource("RectangleShape2D_dwyiq")
@@ -106,6 +115,37 @@ scale = Vector2(1177.12, 30.160017)
 mesh = SubResource("QuadMesh_mc20k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1228069318]
-position = Vector2(7, -18.156574)
-scale = Vector2(58.039993, 1)
+position = Vector2(9.291504, -17.79523)
+scale = Vector2(58.03999, 0.9999999)
 shape = SubResource("RectangleShape2D_dwyiq")
+
+[node name="Obstacle" type="RigidBody2D" parent="." unique_id=484015033]
+position = Vector2(303, 130.00002)
+scale = Vector2(-3.615943, -2.4234238)
+gravity_scale = 0.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstacle" unique_id=1884323183]
+modulate = Color(0.062261887, 1.8049031e-06, 0.34871906, 1)
+scale = Vector2(20.179466, -19.565634)
+mesh = SubResource("QuadMesh_cove1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle" unique_id=666902008]
+shape = SubResource("RectangleShape2D_dn5ey")
+
+[node name="Lose-Screen" type="Node2D" parent="." unique_id=1809363758]
+visible = false
+
+[node name="Background" type="MeshInstance2D" parent="Lose-Screen" unique_id=1523903578]
+modulate = Color(0, 1, 1, 0.3529412)
+position = Vector2(587, 319.99997)
+scale = Vector2(1251.7241, 660.19434)
+mesh = SubResource("QuadMesh_dwyiq")
+
+[node name="Lose text" type="Label" parent="Lose-Screen" unique_id=840317455]
+offset_left = 163.0
+offset_top = 240.0
+offset_right = 1041.0
+offset_bottom = 336.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Bro you got to try harder!!"
