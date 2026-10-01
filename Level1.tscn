@@ -137,6 +137,23 @@ mesh = SubResource("QuadMesh_cove1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle" unique_id=666902008]
 shape = SubResource("RectangleShape2D_dn5ey")
 
+[node name="PowerUp" type="RigidBody2D" parent="." unique_id=708271630 node_paths=PackedStringArray("ball")]
+modulate = Color(0.58431375, 0, 0.24313726, 1)
+position = Vector2(436, 241)
+rotation = 3.1415927
+scale = Vector2(3.615943, 2.4234238)
+gravity_scale = 0.0
+script = ExtResource("3_dwyiq")
+ball = NodePath("../Ball")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="PowerUp" unique_id=671139305]
+modulate = Color(0.062261887, 1.8049031e-06, 0.34871906, 1)
+scale = Vector2(20.179466, -19.565634)
+mesh = SubResource("QuadMesh_cove1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp" unique_id=1752821063]
+shape = SubResource("RectangleShape2D_dn5ey")
+
 [node name="Lose-Screen" type="Node2D" parent="." unique_id=1809363758]
 visible = false
 

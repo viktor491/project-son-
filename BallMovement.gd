@@ -7,6 +7,8 @@ extends RigidBody2D
 @export var winScreen = Node;
 @export var player = Node; 
 static var numOfObstalces = 0;
+static var numOfBalls = 1;
+
 var initialHorizontalSpeed = 0;
 var initialVerticalSpeed = 0;
 var firstCollision = false;
@@ -20,6 +22,10 @@ func _ready() -> void:
 func addObstalce():
 	numOfObstalces =+ 1 
 	print(numOfObstalces)
+
+func _exit_tree():
+	numOfObstalces = 0;
+	numOfBalls = 0;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -43,6 +49,19 @@ func _process(delta):
 			if (numOfObstalces <= 0):
 				winScreen.show();
 				player.changePlayerState()
+		
+		if (colliderName.contains("PowerUp")):
+			var ballCopy = duplicate()
+			get_tree().current_scene.add_child(ballCopy)
+			
+			numOfObstalces =- 1 
+			collision.get_collider().queue_free()
+			dir = -1
+			horizontalSpeed = randi_range(-initialHorizontalSpeed,initialHorizontalSpeed)
+			verticalSpeed = randi_range(initialVerticalSpeed / 1.3, verticalSpeed * 2)
+			if (numOfObstalces <= 0):
+				winScreen.show();
+				player.changePlayerState()	
 			
 		
 		if (colliderName == "Player"):
@@ -56,9 +75,11 @@ func _process(delta):
 				
 		
 		if (colliderName == "LoseHitbox" && numOfObstalces > 0):
-			loseScreen.show()
 			self.queue_free()
-			player.changePlayerState()
+			numOfBalls =- 1 
+			if (numOfBalls < 1):
+				loseScreen.show()
+				player.changePlayerState()
 		
 		if (colliderName == "LeftWall"):
 			dir = -1
