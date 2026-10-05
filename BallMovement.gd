@@ -5,9 +5,12 @@ extends RigidBody2D
 @export var dir = 1;
 @export var loseScreen = Node;
 @export var winScreen = Node;
+@onready var losing_sound: AudioStreamPlayer2D = $"../LosingSound"
+@onready var win_sound: AudioStreamPlayer2D = $"../WinSounds"
 @export var player = Node; 
 static var numOfObstalces = 0;
 static var numOfBalls = 1;
+
 
 var initialHorizontalSpeed = 0;
 var initialVerticalSpeed = 0;
@@ -47,6 +50,7 @@ func _process(delta):
 			horizontalSpeed = randi_range(-initialHorizontalSpeed,initialHorizontalSpeed)
 			verticalSpeed = randi_range(initialVerticalSpeed / 1.3, verticalSpeed * 2)
 			if (numOfObstalces <= 0):
+				win_sound.play();
 				winScreen.show();
 				player.changePlayerState()
 		
@@ -79,6 +83,7 @@ func _process(delta):
 			numOfBalls =- 1 
 			if (numOfBalls < 1):
 				loseScreen.show()
+				losing_sound.play()
 				player.changePlayerState()
 		
 		if (colliderName == "LeftWall"):

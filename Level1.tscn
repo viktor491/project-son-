@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dg2nsghqbe0yr" path="res://BallMovement.gd" id="2_mc20k"]
 [ext_resource type="Script" uid="uid://cb0cw535x177s" path="res://reset.gd" id="3_cove1"]
 [ext_resource type="Script" uid="uid://blth5ukn3vf7s" path="res://addObstacleNum.gd" id="3_dwyiq"]
+[ext_resource type="AudioStream" uid="uid://dv7vwyfhwjaon" path="res://emand_edroff-victory-bell-success-fanfare-576275.mp3" id="5_lmyl5"]
+[ext_resource type="AudioStream" uid="uid://bvqnkcb6wsooi" path="res://u_l5xum8z250-losing-horn-313723.mp3" id="6_mlbie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mc20k"]
 size = Vector2(20, 19)
@@ -44,6 +46,7 @@ mesh = SubResource("BoxMesh_cove1")
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=1905384918 node_paths=PackedStringArray("loseScreen", "winScreen", "player")]
 position = Vector2(306, 288)
+collision_layer = 2
 script = ExtResource("2_mc20k")
 horizontalSpeed = 300
 verticalSpeed = 150
@@ -211,6 +214,12 @@ theme_override_font_sizes/font_size = 100
 text = "Reset
 "
 script = ExtResource("3_cove1")
+
+[node name="WinSounds" type="AudioStreamPlayer2D" parent="." unique_id=859704697]
+stream = ExtResource("5_lmyl5")
+
+[node name="LosingSound" type="AudioStreamPlayer2D" parent="." unique_id=720315280]
+stream = ExtResource("6_mlbie")
 
 [connection signal="pressed" from="Lose-Screen/Reset Button" to="Lose-Screen/Reset Button" method="_on_pressed"]
 [connection signal="pressed" from="Win-Screen/Reset Button" to="Win-Screen/Reset Button" method="_on_pressed"]
